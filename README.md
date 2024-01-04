@@ -1,1 +1,1 @@
-The souce code of my [homepage](https://haroldchen19.github.io/), folked from Zudi Lin's.
+The souce code of my [homepage](https://haroldchen19.github.io/), modified from Zudi Lin's.

@@ -80,7 +80,7 @@
               </p>
             </div>
             <!-- social network icons -->
-            <div class="social">
+<!--             <div class="social">
               <a href="https://github.com/HaroldChen19" target="_blank">
                 <span class="fab fa-github fa-2x" style="display:inline; text-decoration: none; color: #4a4a4a;"></span>
               </a>
@@ -90,7 +90,47 @@
               <a href="mailto:chd@mail.nwpu.edu.cn" target="_blank">
                 <span class="fa-regular fa-envelope fa-2x" style="display:inline; text-decoration: none; color: #4a4a4a; margin-left: 15px"></span>
               </a>
+            </div> -->
+            <div class="social">
+              <!-- 现有的链接 -->
+              <a href="https://github.com/HaroldChen19" target="_blank">
+                <span class="fab fa-github fa-2x" style="display:inline; text-decoration: none; color: #4a4a4a;"></span>
+              </a>
+              <a href="https://scholar.google.com/citations?hl=en&user=BGUdPBAAAAAJ" target="_blank">
+                <span class="fab fa-google fa-2x" style="display:inline; text-decoration: none; color: #4a4a4a; margin-left: 15px"></span>
+              </a>
+              <a href="mailto:chd@mail.nwpu.edu.cn" target="_blank">
+                <span class="fa-regular fa-envelope fa-2x" style="display:inline; text-decoration: none; color: #4a4a4a; margin-left: 15px"></span>
+              </a>
+              <a href="javascript:void(0);" title="_blank" style="display:inline; text-decoration: none; color: #4a4a4a; margin-left: 15px;" onmouseover="showWeChatQRCode()" onmouseout="hideWeChatQRCode()">
+                <span class="fab fa-weixin fa-2x"></span>
+              </a>
             </div>
+            
+            <div id="wechat-qr-code" style="display: none; position: absolute; z-index: 100;">
+              <img src="images/misc/wechat.png" alt="WeChat QR Code" style="width: 100px; height: 100px;" />
+            </div>
+            
+            <script>
+            function showWeChatQRCode() {
+              var qrCode = document.getElementById('wechat-qr-code');
+              qrCode.style.display = 'block';
+            }
+            
+            function hideWeChatQRCode() {
+              var qrCode = document.getElementById('wechat-qr-code');
+              qrCode.style.display = 'none';
+            }
+            </script>
+            
+            <style>
+            .fab.fa-weixin.fa-2x {
+              color: #4a4a4a;
+            }
+            .fab.fa-weixin.fa-2x:hover {
+              color: #00ff00; /* 您可以更改为您喜欢的颜色 */
+            }
+            </style>
 
 
             <div id="sidebar" class="menu sticky is-hidden-mobile">

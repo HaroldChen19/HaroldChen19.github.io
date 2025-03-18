@@ -29,7 +29,24 @@ layout: default
           		<a href="https://x.com/HaroldChen68578" class="icon">
 					<img src="images/ico/x.png"  alt="View Harold Chen's profile on X", height="30px" style="margin-bottom:-3px">
 				</a>
+				<a href="javascript:void(0);" class="icon" onmouseover="showWeChatQRCode()" onmouseout="hideWeChatQRCode()">
+					<img src="images/ico/wechat.jpeg"  alt="View Harold Chen's profile on X", height="30px" style="margin-bottom:-3px">
+				</a>
         </div>
+		<div id="wechat-qr-code" style="display: none; position: absolute; z-index: 100;">
+			<img src="images/wechat2.png" alt="WeChat QR Code" style="width: 200px; height: 200px;" />
+		</div>
+		<script>
+            function showWeChatQRCode() {
+              var qrCode = document.getElementById('wechat-qr-code');
+              qrCode.style.display = 'block';
+            }
+            
+            function hideWeChatQRCode() {
+              var qrCode = document.getElementById('wechat-qr-code');
+              qrCode.style.display = 'none';
+            }
+		</script>
 	  </div>
 </div>	   
 
@@ -184,7 +201,7 @@ layout: default
 		</td>
 		<td  valign="middle">
 			<p><span style="font-weight: bold;"> LightGen: Efficient Image Generation through Knowledge Distillation and Direct Preference Optimization </span><br>
-			Xianfeng Wu*, Yajing Bai*, Haoze Zheng*, <span style="font-weight: bold;"><u>Harold Haodong Chen</u>* (co-first)</span>, Yexin Liu*, Zihao Wang, Xuran Ma, Wen-Jie Shu, Harry Yang, Ser-Nam Lim<sup>&dagger;</sup><br>
+			Xianfeng Wu*, Yajing Bai*, Haoze Zheng*, <span style="font-weight: bold;"><u>Harold Haodong Chen</u>* (co-first)</span>, Yexin Liu*, Zihao Wang, Xuran Ma, Wen-Jie Shu, Harry Yang<sup>&dagger;</sup>, Ser-Nam Lim<sup>&dagger;</sup><br>
 			arXiv, 2025 <br>
 			<span class="tag"><a href="https://arxiv.org/abs/2503.08619">[arXiv]</a></span>
 			<span class="tag"><a href="https://github.com/XianfengWu01/LightGen">[Code]</a></span>
@@ -270,7 +287,7 @@ layout: default
 			<span class="tag"><a href="https://arxiv.org/abs/2501.01245">[Paper]</a></span>
 			<span class="tag"><a href="https://arxiv.org/abs/2501.01245">[arXiv]</a></span>
 			<span class="tag"><a href="https://mingfeishims.github.io/projects-FinePhys/">[Webpage]</a></span>
-			<span class="tag"><a href="https://github.com/MingfeiShiMS/FinePhys">[Code]</a></span>
+			<span class="tag"><a href="https://github.com/SmartDianLab/FinePhys">[Code]</a></span>
 		</td>
 	</tbody>
 	</table>

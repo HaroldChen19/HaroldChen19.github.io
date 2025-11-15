@@ -58,37 +58,10 @@ body{
         }
 }
 
-.content {
+.content heading anchor {
     margin: 0 auto;
     max-width: 100%;
     padding: $spacing-unit 0;
-    box-sizing: border-box;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-.content.anchor {
-    margin: 0 auto;
-    max-width: 100%;
-    padding: $spacing-unit 0;
-}
-
-.content p {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    max-width: 100%;
-}
-
-.content li {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    max-width: 100%;
-}
-
-.content table {
-    max-width: 100%;
-    table-layout: auto;
-    word-wrap: break-word;
 }
 
 .content-section {

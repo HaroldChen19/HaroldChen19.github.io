@@ -1,38 +1,370 @@
----
-layout: default
----
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  
+	<!-- Meta tags for search engines to crawl -->
+	<meta name="robots" content="index,follow">
+	<meta name="keywords" content="Harold Haodong Chen, Haodong Chen, Harold Chen, Harold H. Chen">
+	<link rel="author" href="https://haroldchen19.github.io/">
+	<title>Harold Chen | HKUST</title>
+	<!-- <link rel="apple-touch-icon" href="images/hkust.ico"> -->
+	<link rel="icon" href="images/personal2.jpg"/>
+  </head>
 
-<body>	
-	
-<div class="content heading anchor" id="home">
-		<table style="margin-top: -4mm;">
-		</table>
-        <div style="margin-top: 0mm;" class="img">
-			<img class="header-img" src="images/homepage3.jpg" alt="Photo" align="left" height="240" >
-		</div>
-        <div style="margin-top: 7mm;" class="header-text">
-            <h2>Harold Haodong Chen</h2>
-            <p>
-				Ph.D. Student <br> 
-				The Hong Kong University of Science and Technology <br>
-				Email: haroldchen328 [at] gmail.com <br>
-            </p>
-		<div id="contact">	
-			<a href="https://scholar.google.com/citations?hl=en&user=BGUdPBAAAAAJ" class="icon">
-          			<img src="images/ico/scholar.png"  alt="View Harold Chen's profile on Google Scholar", height="30px" style="margin-bottom:-3px">
-          		</a>
-          		<a href="https://github.com/HaroldChen19" class="icon">
-          			<img src="images/ico/github_s.jpg"  alt="View Harold Chen's codes on Github", height="30px" style="margin-bottom:-3px">
-          		</a>
-          		<a href="https://x.com/HaroldChen68578" class="icon">
-					<img src="images/ico/x.png"  alt="View Harold Chen's profile on X", height="30px" style="margin-bottom:-3px">
-				</a>
-				<a href="javascript:void(0);" class="icon" onmouseover="showWeChatQRCode()" onmouseout="hideWeChatQRCode()">
-					<img src="images/ico/wechat.jpeg"  alt="View Harold Chen's profile on X", height="30px" style="margin-bottom:-3px">
-				</a>
+<style>
+    /* --- 核心配置 --- */
+    :root {
+        --bg-color: #121212;         
+        --card-bg: #1e1e1e;          
+        --border-color: #2c2c2c;     
+        --text-main: #f0f0f0;        
+        --text-sec: #a0a0a0;         
+        --accent: #bf5af2;           /* 电光紫 */
+        --accent-glow: rgba(191, 90, 242, 0.15); 
+        --radius: 16px;              
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        padding: 2rem;
+        -webkit-font-smoothing: antialiased; 
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 280px 1fr; /* 左侧宽度 */
+        gap: 40px;
+    }
+
+    /* --- 卡片通用 --- */
+    .card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        padding: 2rem;
+        transition: all 0.3s ease;
+    }
+    
+    /* --- Latest News card 的上下 padding 调整 --- */
+    #news .card {
+        padding-top: 1.4rem;
+        padding-bottom: 0.8rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    #awards .card {
+        padding-top: 1.2rem;
+        padding-bottom: 0.8rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    
+    /* --- Experience card 的 padding 调整 --- */
+    #experience .card {
+        padding-top: 1.2rem;
+        padding-bottom: 1rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    #services .card {
+        padding-top: 1.2rem;
+        padding-bottom: 1rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    /* --- 头像大小设置 --- */
+    .avatar {
+        width: 180px;  
+        height: 180px; 
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--border-color);
+        margin-bottom: 1.5rem;
+        box-shadow: 0 0 25px var(--accent-glow);
+        transition: transform 0.3s;
+    }
+    .avatar:hover { transform: scale(1.05); }
+
+    /* --- 侧边栏 --- */
+    .sidebar {
+        position: sticky;
+        top: 2rem;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .profile-header h1 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        color: var(--text-main);
+        white-space: nowrap;
+    }
+
+    .role {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        display: inline-block;
+        background: var(--accent-glow);
+        padding: 4px 10px;
+        border-radius: 20px;
+    }
+
+    .sidebar-bio {
+        text-align: left;
+        font-size: 0.9rem;
+        color: var(--text-sec);
+        margin-top: 0.5rem;
+    }
+
+    .social-links {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--text-main);
+        width: 44px;
+        height: 44px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        transition: all 0.2s;
+        padding: 0;
+    }
+    .btn:hover {
+        background: var(--accent-glow);
+        border-color: var(--accent);
+        transform: translateY(-2px);
+    }
+    .btn img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        filter: brightness(0.9);
+        transition: all 0.2s;
+    }
+    .btn:hover img {
+        filter: brightness(1.2);
+    }
+    /* Email 按钮特殊处理（没有图标，使用 emoji 或文字） */
+    .btn-email {
+        font-size: 1.2rem;
+    }
+
+    /* --- 右侧主内容 --- */
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    /* --- Publications 和 Preprints section 的间距调整 --- */
+    #preprints,
+    #publications {
+        margin-bottom: -10px;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        gap: 1rem;
+    }
+    
+    .section-title {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-sec);
+        font-weight: 700;
+    }
+
+    .divider {
+        flex-grow: 1;
+        height: 1px;
+        background: var(--border-color);
+    }
+
+    /* --- Bio 文本 --- */
+    .bio-text { font-size: 1rem; color: var(--text-sec); line-height: 1.7; }
+    .bio-text strong { color: var(--text-main); }
+    .bio-text a { color: var(--accent); text-decoration: none; }
+    .bio-text a:hover { text-decoration: underline; }
+
+    /* --- News & Awards 列表通用 --- */
+    .list-item {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 1.5rem;
+        margin-bottom: 0.4rem;
+        align-items: baseline;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px dashed rgba(255,255,255,0.05);
+    }
+    .list-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .list-date { font-family: monospace; color: var(--accent); font-size: 0.85rem; text-align: right; opacity: 0.9; }
+
+    /* --- Publications --- */
+    .paper-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        padding: 1rem;
+        margin-bottom: 0.8rem;
+        transition: all 0.3s ease;
+        display: grid;
+        grid-template-columns: 140px 1fr; 
+        gap: 1rem;
+    }
+    .paper-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(0,0,0,0.3); transform: translateY(-2px); }
+    .paper-img { width: 100%; height: 100px; background-color: #000; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+    .paper-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: opacity 0.3s; }
+    .paper-card:hover .paper-img img { opacity: 1; }
+    .paper-content-col { display: flex; flex-direction: column; justify-content: center; }
+    .paper-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.1rem; color: var(--text-main); line-height: 1.3; }
+    .paper-authors { color: var(--text-sec); font-size: 0.9rem; margin-bottom: 0.4rem; }
+    .highlight-me { color: var(--accent); font-weight: 500; }
+    .tags { display: flex; gap: 0.5rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
+    .tag { font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: rgba(255,255,255,0.05); color: var(--text-sec); }
+    .tag.venue { color: var(--text-main); background: var(--accent-glow); border-color: rgba(191, 90, 242, 0.3); }
+    .paper-links a { font-size: 0.85rem; color: var(--text-sec); text-decoration: none; margin-right: 0rem; transition: color 0.2s; }
+    .paper-links a:hover { color: var(--accent); }
+
+    /* --- Experience 样式 (带 Logo) --- */
+    .exp-item {
+        display: grid;
+        grid-template-columns: 134px 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        align-items: start;
+    }
+    .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+	/* Logo container */
+    .exp-logo { 
+		margin-left: -9px;
+        width: 138px;
+        height: 50px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    .exp-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0.8;
+		transition: opacity 0.3s
+    }
+
+    .exp-item:hover .exp-logo {
+        border-color: var(--accent);
+        background: var(--accent-glow);
+    }
+    .exp-item:hover .exp-logo img {
+        filter: grayscale(0%) contrast(1);
+    }
+
+    .exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 0.3rem;
+    }
+    .exp-role { font-weight: 700; font-size: 1rem; color: var(--text-main); }
+    .exp-org { color: var(--accent); font-weight: 500; }
+    .exp-date { font-family: monospace; font-size: 0.85rem; color: var(--text-sec); }
+    .exp-desc { font-size: 0.9rem; color: var(--text-sec); }
+
+    /* --- Services 样式 --- */
+    .service-list { list-style: none; }
+    .service-list li {
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        color: var(--text-sec);
+    }
+    .service-list li::before {
+        content: "•"; color: var(--accent); font-weight: bold; display: inline-block; width: 1.5em; margin-left: 0.5em;
+    }
+    .service-list strong { color: var(--text-main); white-space: nowrap; }
+
+    /* --- 响应式 --- */
+    @media (max-width: 768px) {
+        .container { grid-template-columns: 1fr; gap: 2rem; }
+        .sidebar { position: static; text-align: center; }
+        .sidebar-bio { text-align: center; }
+        .paper-card { grid-template-columns: 1fr; gap: 1rem; }
+        .paper-img { height: 160px; }
+        .list-item { grid-template-columns: 1fr; gap: 0.2rem; }
+        .list-date { text-align: left; }
+        .exp-item { grid-template-columns: 120px 1fr; }
+        .exp-header { flex-direction: column; gap: 0.2rem;}
+        .exp-date { order: -1; opacity: 0.7; }
+    }
+</style>
+
+<div class="container">
+    
+    <aside class="sidebar">
+        <div class="profile-header">
+            <img src="images/homepage3.jpg" alt="Harold Chen" class="avatar">
+            <h1>Harold Haodong Chen</h1>
+            <span class="role">PhD Student @ HKUST</span>
         </div>
-		<div id="wechat-qr-code" style="display: none; position: absolute; z-index: 100;">
-			<img src="images/wechat2.png" alt="WeChat QR Code" style="width: 200px; height: 200px;" />
+
+		<div class="sidebar-bio" style="text-align: center; font-size: 0.9rem;">
+            <p style="text-align: center; font-size: 1rem;">The Hong Kong University of Science and Technology</p>
+			<p style="text-align: center; font-size: 1rem;">Email: haroldchen328 [at] gmail.com</p>
+        </div>		
+
+        <div class="social-links">
+            <a href="https://scholar.google.com/citations?hl=en&user=BGUdPBAAAAAJ" class="btn" title="Google Scholar">
+                <img src="images/ico/scholar2.png" alt="Google Scholar">
+            </a>
+            <a href="https://github.com/HaroldChen19" class="btn" title="GitHub">
+                <img src="images/ico/github2.png" alt="GitHub">
+            </a>
+            <a href="https://x.com/HaroldChen68578" class="btn" title="Twitter / X">
+                <img src="images/ico/x.png" alt="Twitter / X">
+            </a>
+			<a href="" class="btn btn-email" title="Wechat" onmouseover="showWeChatQRCode()" onmouseout="hideWeChatQRCode()"><img src="images/ico/wechat2.png" alt="Wechat"></a>
+        </div>
+		<!-- 二维码位置往下移20px -->
+		<div id="wechat-qr-code" style="display: none; position: absolute; z-index: 100; margin-top: 240px;">
+			<img src="images/wechat2.png" alt="WeChat QR Code" style="width: 200px; height: 200px; margin-top: 240px;" />
 		</div>
 		<script>
             function showWeChatQRCode() {
@@ -45,538 +377,385 @@ layout: default
               qrCode.style.display = 'none';
             }
 		</script>
-	  </div>
-</div>	   
+    </aside>
 
-<table hegiht="50"><td hegiht="50"></td></table>
-<table hegiht="50"><td hegiht="50"></td></table>
-<table hegiht="50"><td hegiht="50"></td></table>
+    <main class="main-content">
+        
+        <section id="bio">
+            <div class="section-header">
+                <span class="section-title">Biography</span>
+                <div class="divider"></div>
+            </div>
+            <div class="card">
+                <p class="bio-text">
+                    I'm a 1st-year PhD student at The Hong Kong University of Science and Technology (HKUST), supervised by Prof. <a href="https://www.yingcong.me/" target="_blank">Ying-Cong Chen</a> and Prof. <a href="https://cqf.io/" target="_blank">Qifeng Chen</a>. I obtained my B.E. degree at Northwestern Polytechnical University (NPU) with Outstanding Graduate Award in 2025, where I worked closely with Prof. <a href="https://scholar.google.com/citations?user=amxDSLoAAAAJ&hl=en" target="_blank">Dian Shao</a>. I'm also fortunate to work closely with Prof. <a href="https://leehomyc.github.io/" target="_blank">Harry Yang</a> and Prof. <a href="https://sites.google.com/site/sernam" target="_blank">Ser-Nam Lim</a>.
+                    <br><br>
+                    I am always open to all forms of research collaboration. Feel free to contact me if you are interested in working with me! My research interests include <strong>Video Generation &amp; Understanding</strong>.
+                </p>
+            </div>
+        </section>
 
-	   
-<div class="content anchor" id="bio">     
-	<h3 class="content-section">Biography</h3>
-
-
-		<!-- <p style="text-align: justify">	I'm a final-year undergraduate student at Northwestern Polytechnical University (NPU) and an incoming PhD student (2025 Fall) at The Hong Kong University of Science and Technology (HKUST). I'm fortunate to work closely with Prof. <a href="https://sites.google.com/site/sernam" target="_blank">Ser-Nam Lim</a>, Prof. <a href="https://leehomyc.github.io/" target="_blank">Harry Yang</a>, Prof. <a href="https://cqf.io/" target="_blank">Qifeng Chen</a> and Prof. <a href="https://scholar.google.com/citations?user=amxDSLoAAAAJ&hl=en" target="_blank">Dian Shao</a>.
-			<br> -->
-		<!-- <p style="text-align: justify">	I'm a PhD student at The Hong Kong University of Science and Technology (HKUST), supervised by Prof. <a href="https://leehomyc.github.io/" target="_blank">Harry Yang</a> and Prof. <a href="https://cqf.io/" target="_blank">Qifeng Chen</a>. I obtained my B.S. degree at Northwestern Polytechnical University (NPU) in 2025, where I worked closely with Prof. <a href="https://scholar.google.com/citations?user=amxDSLoAAAAJ&hl=en" target="_blank">Dian Shao</a>. I'm also fortunate to work closely with Prof. <a href="https://www.yingcong.me/" target="_blank">Ying-Cong Chen</a> and Prof. <a href="https://sites.google.com/site/sernam" target="_blank">Ser-Nam Lim</a>.
-			<br> -->
-		<p style="text-align: justify">	I'm a PhD student at The Hong Kong University of Science and Technology (HKUST), supervised by Prof. <a href="https://www.yingcong.me/" target="_blank">Ying-Cong Chen</a> and Prof. <a href="https://cqf.io/" target="_blank">Qifeng Chen</a>. I obtained my B.E. degree at Northwestern Polytechnical University (NPU) with Outstanding Graduate Award in 2025, where I worked closely with Prof. <a href="https://scholar.google.com/citations?user=amxDSLoAAAAJ&hl=en" target="_blank">Dian Shao</a>. I'm also fortunate to work closely with Prof. <a href="https://leehomyc.github.io/" target="_blank">Harry Yang</a> and Prof. <a href="https://sites.google.com/site/sernam" target="_blank">Ser-Nam Lim</a>.
-			<br>
-
-		<!-- <p style="text-align: justify"> Previously, I was advised by Prof. <a href="https://scholar.google.com/citations?user=amxDSLoAAAAJ&hl=en" target="_blank">Dian Shao</a> from both NPU and Shanghai AI Laboratory, which contributed to my development in this field. I also worked with Prof. <a href="https://scholar.google.com/citations?user=8P7q1wQAAAAJ&hl=zh-CN" target="_blank">Mulin Chen</a> and Prof. <a href="https://scholar.google.com/citations?user=ahUibskAAAAJ&hl=zh-CN" target="_blank">Xuelong Li</a> from TeleAI, China Telecom, as well as Prof. <a href="https://scholar.google.com/citations?user=n9cODgcAAAAJ" target="_blank">Yuxuan Liang</a> from HKUST(GZ). -->
-			
-		<p style="text-align: justify"> I am always open to all forms of research collaboration. Feel free to contact me if you are interested in working with me! My research interests include <strong>Video Generation &amp; Understanding</strong>.
-		</p>
-		<!-- <ul>
-			<li><strong>Video Generation:</strong> RFT, test-time, efficient generation</li>
-			<li><strong>Large Video Model:</strong> RFT, DPO, unified understanding &amp; generation </li>
-			<li><strong>Embodied AI:</strong> RFT, VLA</li>
-		</ul> -->
-</div>   
-	
-<div class="content anchor" id="news">  
-	<h3 class="content-section-list">News</h3>
-	<p>
-	<li>
-		[11/2025] One paper is accepted to AAAI'26!
-	<li>
-		[09/2025] One paper is accepted to NeurIPS'25!
-	<li>
-		[07/2025] One paper is accepted to MM'25!
-	<li>
-		[05/2025] One paper is accepted to ICML'25!
-	<li>
-		[02/2025] One paper is accepted to CVPR'25!
-	<li>
-		[02/2025] Served as a reviewer for ICCV'25.
-	<li>
-		[02/2025] Served as a reviewer for Pattern Recognition.
-	<!-- <li>
-		[01/2025] Served as a reviewer for ACM TOMM. -->
-	
-	<details><summary>More</summary>
-	<li>
-		[12/2024] Served as a reviewer for ICML'25.
-	<li>
-		[12/2024] One paper is accepted to AAAI'25!
-	<li>
-		[11/2024] Served as a reviewer for CVPR'25.
-	<!-- <li>
-		[10/2024] Served as a reviewer for AISTATS'25. -->
-	<li>
-		[08/2024] Served as a reviewer for ICLR'25.
-	<li>
-		[07/2024] Two paper are accepted to MM'24!
-	<li>
-		[05/2024] Served as a reviewer for NeurIPS'24.
-	<li>
-		[02/2024] Served as a reviewer for ECCV'24.
-	<li>
-		[01/2024] Served as a reviewer for MM'24.
-	<li>
-		[01/2024] One paper is accepted to WWW'24 as <span style="font-weight: bold;"><font color="#f00">Oral Presentation</font></span>!
-	</li>
-	</details>
-	</p>
-</div>   
-
-<div class="content anchor" id="publication">     
-	<h3  class="content-section">
-	Experience
-	</h3>
-
-
-	<!-- <table bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody>
-			<tr valign="baseline">
-				<td width="160">
-					<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class="">
-						<img src="./images/institute/knowin.png" width="160" border="0">
-					</p>
-				</td>
-				<td valign="middle">
-					<p>
-						<span style="font-weight: bold;">Research Intern </span>| Knowin AI<br>
-						Time: 7/2025 - 9/2025.
-					</p>
-				</td>
-			</tr>
-		</tbody>
-	</table> -->
+        <section id="news">
+            <div class="section-header">
+                <span class="section-title">Latest News</span>
+                <div class="divider"></div>
+            </div>
+            <div class="card">
+                <div class="list-item">
+                    <div class="list-date">11/2025</div>
+                    <div>One paper is accepted to <strong>AAAI'26</strong>!</div>
+                </div>
+                <div class="list-item">
+                    <div class="list-date">09/2025</div>
+                    <div>One paper is accepted to <strong>NeurIPS'25</strong>!</div>
+                </div>
+                <div class="list-item">
+                    <div class="list-date">07/2025</div>
+                    <div>One paper is accepted to <strong>MM'25</strong>!</div>
+                </div>
+                <div class="list-item">
+                    <div class="list-date">05/2025</div>
+                    <div>One paper is accepted to <strong>ICML'25</strong>!</div>
+                </div>
+                <div class="list-item">
+                    <div class="list-date">02/2025</div>
+                    <div>One paper is accepted to <strong>CVPR'25</strong>!</div>
+                </div>
+                <details>
+                    <summary style="cursor: pointer; color: var(--accent); margin-top: 1rem;">More</summary>
+					<div class="list-item">
+						<div class="list-date">02/2025</div>
+						<div>Served as a reviewer for ICCV'25.</div>
+					</div>
+					<div class="list-item">
+						<div class="list-date">02/2025</div>
+						<div>Served as a reviewer for Pattern Recognition.</div>
+					</div>
+                    <div class="list-item">
+                        <div class="list-date">12/2024</div>
+                        <div>Served as a reviewer for ICML'25.</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-date">12/2024</div>
+                        <div>One paper is accepted to <strong>AAAI'25</strong>!</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-date">11/2024</div>
+                        <div>Served as a reviewer for CVPR'25.</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-date">08/2024</div>
+                        <div>Served as a reviewer for ICLR'25.</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-date">07/2024</div>
+                        <div>Two papers are accepted to <strong>MM'24</strong>!</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-date">05/2024</div>
+                        <div>Served as a reviewer for NeurIPS'24.</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-date">02/2024</div>
+                        <div>Served as a reviewer for ECCV'24.</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-date">01/2024</div>
+                        <div>Served as a reviewer for MM'24.</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-date">01/2024</div>
+                        <div>One paper is accepted to <strong>WWW'24</strong> as <span style="color: #f00; font-weight: bold;">Oral Presentation</span>!</div>
+                    </div>
+                </details>
+            </div>
+        </section>
 
 
-	<table bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody>
-			<tr valign="baseline">
-				<td width="160">
-					<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class="">
-						<img src="./images/institute/hkust_2.png" width="160" border="0">
-					</p>
-				</td>
-				<td valign="middle">
-					<p>
-						<span style="font-weight: bold;">Visiting Student </span>| HKUST<br>
-						Time: 11/2024 - 6/2025. Advisor: Prof. <a href="https://leehomyc.github.io/" target="_blank">Harry Yang</a>
-					</p>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+        <section id="preprints">
+            <div class="section-header">
+                <span class="section-title">Selected Preprints</span>
+                <div class="divider"></div>
+            </div>
 
-	<table bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody>
-			<tr valign="baseline">
-				<td width="160">
-					<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class="">
-						<img src="./images/institute/everlyn_1.png" width="160" border="0">
-					</p>
-				</td>
-				<td valign="middle">
-					<p>
-						<span style="font-weight: bold;">Research Intern </span>| Everlyn AI<br>
-						Time: 8/2024 - 5/2025. Mentor: Prof. <a href="https://sites.google.com/site/sernam" target="_blank">Ser-Nam Lim</a>
-					</p>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<table bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody>
-			<tr valign="baseline">
-				<td width="160">
-					<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class="">
-						<img src="./images/institute/hkgai.png" width="160" border="0">
-					</p>
-				</td>
-				<td valign="middle">
-					<p>
-						<span style="font-weight: bold;">Research Intern </span>| HKGAI<br>
-						Time: 5/2024 - 8/2024. Mentor: Prof. <a href="https://whluo.github.io/" target="_blank">Wenhan Luo</a>
-					</p>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	
-	
+            <article class="paper-card">
+                <div class="paper-img">
+                    <img src="images/papers/tivibench2.png" alt="TiViBench">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">TiViBench: Benchmarking Think-in-Video Reasoning for Video Generative Models</div>
+                    <div class="paper-authors">
+                        <span class="highlight-me">Harold Haodong Chen*</span>, Disen Lan*, Wen-Jie Shu*, Qingyang Liu, Sirui Chen, Wenkai Cheng, Kanghao Chen, Hongfei Zhang, Zixin Zhang, Rongjin Guo, Yu Cheng<sup>&dagger;</sup>, Ying-Cong Chen<sup>&dagger;</sup>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Benchmark Paper, 2025</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2511.13704"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                        <a href="https://haroldchen19.github.io/TiViBench-Page/"><span class="highlight-me">[</span>Webpage<span class="highlight-me">]</span></a>
+                        <a href="https://github.com/EnVision-Research/TiViBench"><span class="highlight-me">[</span>Code & Data<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
 
-</div>
+            <article class="paper-card">
+                <div class="paper-img">
+                    <img src="images/papers/scalingar.png" alt="ScalingAR">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">Go with Your Gut: Scaling Confidence for Autoregressive Image Generation</div>
+                    <div class="paper-authors">
+                        <span class="highlight-me">Harold Haodong Chen*</span>, Xianfeng Wu*, Wen-Jie Shu, Rongjin Guo, Disen Lan, Harry Yang, Ying-Cong Chen<sup>&dagger;</sup>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Preprint, 2025</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2509.26376"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                        <a href="https://github.com/EnVision-Research/ScalingAR"><span class="highlight-me">[</span>Code<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
 
+        </section>
 
-<div class="content anchor" id="publication">     
-	<h3  class="content-section">
-	Selected Preprints
-	</h3>
+        <section id="publications">
+            <div class="section-header">
+                <span class="section-title">Selected Publications</span>
+                <div class="divider"></div>
+            </div>
 
-	<table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/tivibench2.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;">TiViBench: Benchmarking Think-in-Video Reasoning for Video Generative Models </span><br>
-			<span style="font-weight: bold;"><u>Harold Haodong Chen*</u></span>, Disen Lan*, Wen-Jie Shu*, Qingyang Liu, Sirui Chen, Wenkai Cheng, Kanghao Chen, Hongfei Zhang, Zixin Zhang, Rongjin Guo, Yu Cheng<sup>&dagger;</sup>, Ying-Cong Chen<sup>&dagger;</sup>
-			<br>
-			<i>Benchmark Paper, 2025</i><br>
-			<span class="tag"><a href="https://arxiv.org/abs/2511.13704">[arXiv]</a></span>
-			<span class="tag"><a href="https://haroldchen19.github.io/TiViBench-Page/">[Webpage]</a></span>
-			<span class="tag"><a href="https://github.com/EnVision-Research/TiViBench">[Code & Data]</a></span>
-		</td>
-	</tbody>
-	</table>
+            <article class="paper-card">
+                <div class="paper-img">
+                    <img src="images/papers/physhpo_new1.png" alt="PhysHPO">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">Hierarchical Fine-grained Preference Optimization for Physically Plausible Video Generation</div>
+                    <div class="paper-authors">
+                        <span class="highlight-me">Harold Haodong Chen</span>, Haojian Huang, Qifeng Chen, Harry Yang<sup>&dagger;</sup>, Ser-Nam Lim<sup>&dagger;</sup>
+                    </div>
+                    <div class="tags">
+                        <span class="tag venue">NeurIPS 2025</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2508.10858"><span class="highlight-me">[</span>Paper<span class="highlight-me">]</span></a>
+                        <a href="https://arxiv.org/abs/2508.10858"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                        <a href="https://haroldchen19.github.io/PhysHPO-Page/"><span class="highlight-me">[</span>Webpage<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
 
-	<table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/scalingar.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;"> Go with Your Gut: Scaling Confidence for Autoregressive Image Generation </span><br>
-			<span style="font-weight: bold;"><u>Harold Haodong Chen*</u></span>, Xianfeng Wu*, Wen-Jie Shu, Rongjin Guo, Disen Lan, Harry Yang, Ying-Cong Chen<sup>&dagger;</sup>
-			<br>
-			<i>Preprint, 2025</i><br>
-			<span class="tag"><a href="https://arxiv.org/abs/2509.26376">[arXiv]</a></span>
-			<span class="tag"><a href="https://github.com/EnVision-Research/ScalingAR">[Code]</a></span>
-		</td>
-	</tbody>
-	</table>
+            <article class="paper-card">
+                <div class="paper-img">
+                    <img src="images/papers/finequest.png" alt="FineQuest">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">FineQuest: Adaptive Knowledge-Assisted Sports Video Understanding via Agent-of-Thoughts Reasoning</div>
+                    <div class="paper-authors">
+                        <span class="highlight-me">Haodong Chen</span>, Haojian Huang, Xinxiang Yin, Dian Shao<sup>&dagger;</sup>
+                    </div>
+                    <div class="tags">
+                        <span class="tag venue">MM 2025</span>
+                        <span class="tag" style="color: lightcoral;">Oral Presentation</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2509.11796"><span class="highlight-me">[</span>Paper<span class="highlight-me">]</span></a>
+                        <a href="https://arxiv.org/abs/2509.11796"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
 
-	<!-- <table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/fluxflow_new.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;"> Temporal Regularization Makes Your Video Generator Stronger </span><br>
-			<span style="font-weight: bold;"><u>Harold Haodong Chen</u></span>, Haojian Huang, Xianfeng Wu, Yexin Liu, Yajing Bai, Wen-Jie Shu, Harry Yang<sup>&dagger;</sup>, Ser-Nam Lim<sup>&dagger;</sup>
-			<br>
-			<i>Technical Report, 2025</i><br>
-			<span class="tag"><a href="https://arxiv.org/abs/2503.15417">[arXiv]</a></span>
-			<span class="tag"><a href="https://haroldchen19.github.io/FluxFlow/">[Webpage]</a></span>
-		</td>
-	</tbody>
-	</table> -->
-<!-- 
-	<table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/lightgen_new.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;"> LightGen: Efficient Image Generation through Knowledge Distillation and Direct Preference Optimization </span><br>
-			Xianfeng Wu*, Yajing Bai*, Haoze Zheng*, <span style="font-weight: bold;"><u>Harold Haodong Chen</u>* <font color="lightcoral">(co-first)</font></span>, Yexin Liu*, Zihao Wang, Xuran Ma, Wen-Jie Shu, Harry Yang<sup>&dagger;</sup>, Ser-Nam Lim<sup>&dagger;</sup><br>
-			<i>Technical Report, 2025</i><br>
-			<span class="tag"><a href="https://arxiv.org/abs/2503.08619">[arXiv]</a></span>
-			<span class="tag"><a href="https://github.com/XianfengWu01/LightGen">[Code]</a></span>
-		</td>
-	</tbody>
-	</table> -->
+            <article class="paper-card">
+                <div class="paper-img">
+                    <img src="images/papers/vista.png" alt="VistaDPO">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">VistaDPO: Video Hierarchical Spatial-Temporal Direct Preference Optimization for Large Video Models</div>
+                    <div class="paper-authors">
+                        Haojian Huang*, <span class="highlight-me">Haodong Chen*</span> <span style="color: lightcoral;">(co-first)</span>, Shengqiong Wu, Meng Luo, Jinlan Fu, Xinya Du, Hanwang Zhang, Hao Fei<sup>&dagger;</sup>
+                    </div>
+                    <div class="tags">
+                        <span class="tag venue">ICML 2025</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2504.13122"><span class="highlight-me">[</span>Paper<span class="highlight-me">]</span></a>
+                        <a href="https://arxiv.org/abs/2504.13122"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                        <a href="https://github.com/HaroldChen19/VistaDPO"><span class="highlight-me">[</span>Code<span class="highlight-me">]</span></a>
+                        <a href="https://huggingface.co/datasets/Harold328/VistaDPO-7K"><span class="highlight-me">[</span>Dataset<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
 
-	<!-- <table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/ues.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;"> Beyond Generation: Unlocking Universal Editing via Self-Supervised Fine-Tuning </span><br>
-			<span style="font-weight: bold;"><u>Harold Haodong Chen</u></span>, Harry Yang<sup>&dagger;</sup>, Ser-Nam Lim<sup>&dagger;</sup>
-			<br>
-			arXiv, 2024 <br>
-			<span class="tag"><a href="https://arxiv.org/abs/2412.02114">[arXiv]</a></span>
-			<span class="tag"><a href="https://haroldchen19.github.io/UES-Page/">[Webpage]</a></span>
-			<span class="tag"><a href="https://github.com/HaroldChen19/UES">[Code]</a></span>
-			<span class="tag"><a href="https://huggingface.co/datasets/Harold328/OmniBench-99">[Benchmark]</a></span>
-		</td>
-	</tbody>
-	</table> -->
-<!-- 
-	<table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/gsvton_new.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;"> GaussianVTON: 3D Human Virtual Try-ON via Multi-Stage Gaussian Splatting Editing with Image Prompting
-			</span><br>
-			<span style="font-weight: bold;"><u>Haodong Chen</u></span>, Yongle Huang, Haojian Huang, Xiangsheng Ge, Dian Shao<sup>&dagger;</sup>
-			<br>
-			<i>Technical Report, 2024</i><br>
-			<span class="tag"><a href="https://arxiv.org/abs/2405.0747">[arXiv]</a></span>
-			<span class="tag"><a href="https://haroldchen19.github.io/gsvton/">[Webpage]</a></span>
-			<span class="tag"><a href="https://github.com/HaroldChen19/GaussianVTON">[Code]</a></span>
-		</td>
-	</tbody>
-	</table>
-	 -->
+            <article class="paper-card">
+                <div class="paper-img">
+                    <img src="images/papers/sefar.png" alt="SeFAR">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">SeFAR: Semi-supervised Fine-grained Action Recognition with Temporal Perturbation and Learning Stabilization</div>
+                    <div class="paper-authors">
+                        Yongle Huang*, <span class="highlight-me">Haodong Chen*</span> <span style="color: lightcoral;">(co-first)</span>, Zhenbang Xu, Zihan Jia, Haozhou Sun, Dian Shao<sup>&dagger;</sup>
+                    </div>
+                    <div class="tags">
+                        <span class="tag venue">AAAI 2025</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://ojs.aaai.org/index.php/AAAI/article/view/32400"><span class="highlight-me">[</span>Paper<span class="highlight-me">]</span></a>
+                        <a href="https://arxiv.org/abs/2501.01245"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                        <a href="https://github.com/KyleHuang9/SeFAR"><span class="highlight-me">[</span>Code<span class="highlight-me">]</span></a>
+                        <a href="https://github.com/KyleHuang9/SeFAR"><span class="highlight-me">[</span>Dataset<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
 
-	
-</div>
+            <article class="paper-card">
+                <div class="paper-img">
+                    <img src="images/papers/finecliper.png" alt="FineCLIPER">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">FineCLIPER: Multi-modal Fine-grained CLIP for Dynamic Facial Expression Recognition with AdaptERs</div>
+                    <div class="paper-authors">
+                        <span class="highlight-me">Haodong Chen</span>, Haojian Huang, Junhao Dong, Mingzhe Zheng, Dian Shao<sup>&dagger;</sup>
+                    </div>
+                    <div class="tags">
+                        <span class="tag venue">MM 2024</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://dl.acm.org/doi/10.1145/3664647.3680827"><span class="highlight-me">[</span>Paper<span class="highlight-me">]</span></a>
+                        <a href="https://arxiv.org/abs/2407.02157"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                        <a href="https://haroldchen19.github.io/FineCLIPER-Page/"><span class="highlight-me">[</span>Webpage<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
 
-	
-<div class="content anchor" id="publication">     
-	<h3  class="content-section">
-	Selected Publications
-	</h3>
+        </section>
 
-	<table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/physhpo_new1.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;"> Hierarchical Fine-grained Preference Optimization for Physically Plausible Video Generation</span><br>
-			<span style="font-weight: bold;"><u>Harold Haodong Chen</u></span>, Haojian Huang, Qifeng Chen, Harry Yang<sup>&dagger;</sup>, Ser-Nam Lim<sup>&dagger;</sup>
-			<br>
-			<i>Annual Conference on Neural Information Processing Systems
-			(<span style="font-weight: bold;">NeurIPS</span>), 2025</i><br>
-			<span class="tag"><a href="https://arxiv.org/abs/2508.10858">[Paper]</a></span>
-			<span class="tag"><a href="https://arxiv.org/abs/2508.10858">[arXiv]</a></span>
-			<span class="tag"><a href="https://haroldchen19.github.io/PhysHPO-Page/">[Webpage]</a></span>
-		</td>
-	</tbody>
-	</table>
+        <section id="experience">
+            <div class="section-header">
+                <span class="section-title">Experience</span>
+                <div class="divider"></div>
+            </div>
+            <div class="card">
+                
+                <div class="exp-item">
+                    <div class="exp-logo">
+						<div class="exp-logo-bg" style="background-color: #ffffff; border-color: #ffffff; border-radius: 5px; opacity: 0.8;">
+							<img src="images/institute/hkust_2.png" alt="HKUST Logo">
+						</div>
+                    </div>
+                    <div class="exp-content">
+                        <div class="exp-header">
+                            <div>
+                                <span class="exp-role">Visiting Student</span>
+                                <span style="margin: 0 5px; color:var(--text-sec)">@</span>
+                                <span class="exp-org">HKUST</span>
+                            </div>
+                            <span class="exp-date">11/2024 - 06/2025</span>
+                        </div>
+                        <div class="exp-desc">
+                            Advisor: Prof. <a href="https://leehomyc.github.io/" target="_blank" style="color: var(--accent);">Harry Yang</a>
+                        </div>
+                    </div>
+                </div>
 
-	<table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/finequest.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;"> FineQuest: Adaptive Knowledge-Assisted Sports Video Understanding via Agent-of-Thoughts Reasoning</span><br>
-			<span style="font-weight: bold;"><u>Haodong Chen</u></span>, Haojian Huang, Xinxiang Yin, Dian Shao<sup>&dagger;</sup>
-			<br>
-			<i>ACM International Conference on Multimedia
-			(<span style="font-weight: bold;">MM</span>), 2025 <font color="#f00">(Oral Presentation)</font></span></i><br>
-			<span class="tag"><a href="https://arxiv.org/abs/2509.11796">[Paper]</a></span>
-			<span class="tag"><a href="https://arxiv.org/abs/2509.11796">[arXiv]</a></span>
-		</td>
-	</tbody>
-	</table>
+                <div class="exp-item">
+                    <div class="exp-logo">
+						<div class="exp-logo-bg" style="background-color: #090909; border-color: #090909; border-radius: 5px; opacity: 0.8;">
+							<img src="images/institute/everlyn2.jpg" alt="Everlyn AI Logo">
+						</div>
+                    </div>
+                    <div class="exp-content">
+                        <div class="exp-header">
+                            <div>
+                                <span class="exp-role">Research Intern</span>
+                                <span style="margin: 0 5px; color:var(--text-sec)">@</span>
+                                <span class="exp-org">Everlyn AI</span>
+                            </div>
+                            <span class="exp-date">08/2024 - 05/2025</span>
+                        </div>
+                        <div class="exp-desc">
+                            Mentor: Prof. <a href="https://sites.google.com/site/sernam" target="_blank" style="color: var(--accent);">Ser-Nam Lim</a>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="exp-item">
+                    <div class="exp-logo">
+						<div class="exp-logo-bg" style="background-color: #ffffff; border-color: #ffffff; border-radius: 5px; opacity: 0.8;">
+							<img src="images/institute/hkgai.png" alt="HKGAI Logo">
+						</div>
+                    </div>
+                    <div class="exp-content">
+                        <div class="exp-header">
+                            <div>
+                                <span class="exp-role">Research Intern</span>
+                                <span style="margin: 0 5px; color:var(--text-sec)">@</span>
+                                <span class="exp-org">HKGAI</span>
+                            </div>
+                            <span class="exp-date">05/2024 - 08/2024</span>
+                        </div>
+                        <div class="exp-desc">
+                            Mentor: Prof. <a href="https://whluo.github.io/" target="_blank" style="color: var(--accent);">Wenhan Luo</a>
+                        </div>
+                    </div>
+                </div>
 
-	<table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/vista.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;"> VistaDPO: Video Hierarchical Spatial-Temporal Direct Preference Optimization for Large Video Models </span><br>
-			Haojian Huang*, <span style="font-weight: bold;"><u>Haodong Chen</u>* <font color="lightcoral">(co-first)</font></span>, Shengqiong Wu, Meng Luo, Jinlan Fu, Xinya Du, Hanwang Zhang, Hao Fei<sup>&dagger;</sup>
-			<br>
-			<i>International Conference on Machine Learning
-			(<span style="font-weight: bold;">ICML</span>), 2025</i><br>
-			<span class="tag"><a href="https://arxiv.org/abs/2504.13122">[Paper]</a></span>
-			<span class="tag"><a href="https://arxiv.org/abs/2504.13122">[arXiv]</a></span>
-			<span class="tag"><a href="https://github.com/HaroldChen19/VistaDPO">[Code]</a></span>
-			<span class="tag"><a href="https://huggingface.co/datasets/Harold328/VistaDPO-7K">[Dataset]</a></span>
-		</td>
-	</tbody>
-	</table>
-
-	<!-- <table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/finephys.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;">FinePhys: Fine-grained Human Action Generation by Explicitly Incorporating Physical Laws for Effective Skeletal Guidance</span><br>
-			Dian Shao<sup>&dagger;</sup>, Mingfei Shi, Shengda Xu, <span style="font-weight: bold;"><u>Haodong Chen</u></span>, Yongle Huang, Binglu Wang
-			<br>
-			<i>IEEE/CVF Computer Vision and Pattern Recognition
-			(<span style="font-weight: bold;">CVPR</span>), 2025</i><br>
-			<span class="tag"><a href="https://arxiv.org/abs/2505.13437">[Paper]</a></span>
-			<span class="tag"><a href="https://arxiv.org/abs/2505.13437">[arXiv]</a></span>
-			<span class="tag"><a href="https://mingfeishims.github.io/projects-FinePhys/">[Webpage]</a></span>
-			<span class="tag"><a href="https://github.com/SmartDianLab/FinePhys">[Code]</a></span>
-		</td>
-	</tbody>
-	</table> -->
-
-	<table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/sefar.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;"> SeFAR: Semi-supervised Fine-grained Action Recognition with Temporal Perturbation and Learning Stabilization
-			</span><br>
-			Yongle Huang*, <span style="font-weight: bold;"><u>Haodong Chen</u>* <font color="lightcoral">(co-first)</font></span>, Zhenbang Xu, Zihan Jia, Haozhou Sun, Dian Shao<sup>&dagger;</sup>
-			<br>
-			<i>AAAI Conference on Artificial Intelligence
-			(<span style="font-weight: bold;">AAAI</span>), 2025</i><br>
-			<span class="tag"><a href="https://ojs.aaai.org/index.php/AAAI/article/view/32400">[Paper]</a></span>
-			<span class="tag"><a href="https://arxiv.org/abs/2501.01245">[arXiv]</a></span>
-			<span class="tag"><a href="https://github.com/KyleHuang9/SeFAR">[Code]</a></span>
-			<span class="tag"><a href="https://github.com/KyleHuang9/SeFAR">[Dataset]</a></span>
-		</td>
-	</tbody>
-	</table>
-
-	<table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/finecliper.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;"> FineCLIPER: Multi-modal Fine-grained CLIP for Dynamic Facial Expression Recognition with AdaptERs
-			</span><br>
-			<span style="font-weight: bold;"><u>Haodong Chen</u></span>, Haojian Huang, Junhao Dong, Mingzhe Zheng, Dian Shao<sup>&dagger;</sup> <br>
-			<i>ACM International Conference on Multimedia
-			(<span style="font-weight: bold;">MM</span>), 2024</i><br>
-			<span class="tag"><a href="https://dl.acm.org/doi/10.1145/3664647.3680827">[Paper]</a></span>
-			<span class="tag"><a href="https://arxiv.org/abs/2407.02157">[arXiv]</a></span>
-			<span class="tag"><a href="https://haroldchen19.github.io/FineCLIPER-Page/">[Webpage]</a></span>
-		</td>
-	</tbody>
-	</table>
-	
-	<!-- <table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/CREST.png" width="160"  border="0"></p>
-		</td>
-	<td  valign="middle">
-		<p><span style="font-weight: bold;"> CREST: Cross-modal Resonance through Evidential Deep Learning for Enhanced Zero-Shot Learning </span><br>
-			 Haojian Huang, Xiaozhen Qiao, Zhuo Chen, <span style="font-weight: bold;"><u>Haodong Chen</u></span>, Bingyu Li, Zhe Sun, Mulin Chen<sup>&dagger;</sup>, Xuelong Li<sup>&dagger;</sup>
-			<br>
-			<i>ACM International Conference on Multimedia
-			(<span style="font-weight: bold;">MM</span>), 2024</i><br>
-			<span class="tag"><a href="https://dl.acm.org/doi/10.1145/3664647.3681629">[Paper]</a></span>
-			<span class="tag"><a href="https://arxiv.org/abs/2404.09640">[arXiv]</a></span>
-			<span class="tag"><a href="https://github.com/JethroJames/CREST">[Code]</a></span>
-		</td>
-	</tbody>
-	</table> -->
-
-	<!-- <table  bordercolor="white" bordercolordark="white" bordercolorlight="white" cellpadding="0" cellspacing="0" height="45" bgcolor="white">
-		<tbody><tr valign="baseline">
-		<td width="160">
-			<p align="center" style="margin-top:2.5mm; margin-right:1mm; margin-bottom:0; margin-left:0;" class=""><img src="./images/papers/urbanclip.png" width="160"  border="0"></p>
-		</td>
-		<td  valign="middle">
-			<p><span style="font-weight: bold;"> UrbanCLIP: Learning Text-enhanced Urban Region Profiling with Contrastive Language-Image Pretraining from the Web
-			</span><br>
-			Yibo Yan, Haomin Wen, Siru Zhong, Wei Chen, <span style="font-weight: bold;"><u>Haodong Chen</u></span>, Qingsong Wen, Roger Zimmermann, Yuxuan Liang<sup>&dagger;</sup>
-			<br>
-			<i>ACM International World Wide Web Conference
-			(<span style="font-weight: bold;">WWW</span>), 2024 <span style="font-weight: bold;"><font color="#f00">(Oral Presentation)</font></span></i><br>
-			<span class="tag"><a href="https://dl.acm.org/doi/10.1145/3589334.3645378">[Paper]</a></span>
-			<span class="tag"><a href="https://arxiv.org/abs/2310.18340">[arXiv]</a></span>
-			<span class="tag"><a href="https://www.youtube.com/watch?v=FdIZ7oJfmkg">[Video]</a></span>
-			<span class="tag"><a href="https://github.com/StupidBuluchacha/UrbanCLIP">[Code]</a></span>
-		</td>
-	</tbody>
-	</table> -->
-
-	
-</div>
-
-
-
-
-
-<div class="content anchor" >    
-	<h3 class="content-section-list">Awards and Honors</h3>  
-		<p>
-			<table style="border-spacing:2px" width="100%">
-			<tbody>
-			<tr><td><li>
-				Postgraduate Scholarship, HKUST(GZ)  </td> <td align="right"> 2025 </td></tr>
-			<tr><td><li>
-				Outstanding Graduate, NPU  </td> <td align="right"> 2025 </td></tr>
-			<tr><td><li>
-				Postgraduate Scholarship, HKUST  </td> <td align="right"> 2025 </td></tr>
-			<!-- <tr><td><li>
-				Innovation and Entrepreneurship Advanced Individual Honor, NPU</td> <td align="right"> 2024 </td></tr> -->
-			<tr><td><li>
-				Outstanding University Student, NPU  </td> <td align="right"> 2023-2024 </td></tr>
-			<tr><td><li>
-				University Scholarship, NPU  </td> <td align="right"> 2023-2024 </td></tr>
-			<tr><td><li>
-				University Student Innovation Fund, Ministry of Education of P.R. China </td> <td align="right"> 2023 </td></tr>
-			<!-- <tr><td><li>
-				Academic Advancement Individual Honor, NPU </td> <td align="right"> 2023 </td></tr> -->
-			<!-- <tr><td><li>
-				School Scholarship, NPU  </td> <td align="right"> 2023 </td></tr> -->
-			</li>
-			</tbody>
-			</table>
-
-			<!-- <details><summary>More</summary>
-			<table style="border-spacing:2px" width="100%">
-			<tbody>
-			<tr><td><li>Nanjing University Outstanding Student Leader Award</td> <td align="right"> 2015</td></tr>
-			</li>
-			</tbody>
-			</table>
-			</details> -->
-	</p>
-</div>    
-
-	
-<!-- <div class="content anchor" id="talks">
-	<h3 class="content-section-list">Talks</h3>
-
-	<p>
-		<table style="border-spacing:2px" width="100%">
-		<body>
-
-		<tr><td><li>Bridging the Representation Gap of Humans and Computers for Video Production</td></tr>
-		<tr><td>
-			<ul><ul>
-				<li>China Golden Rooster Film Festival, 11/2024</li>
-				<li>World Artificial Intelligence Conference (WAIC), 07/2024</li>
-				<li>Shanghai Television Magnolia Festival, 06/2024</li>
-				<li>University of Hong Kong (HKU), 05/2024</li>
-				<li>Hong Kong University of Science and Technology (HKUST), 05/2024</li>
-				<li>Stanford University, 04/2024</li>
-				<li><a style="color:#333" href="https://datascience.hku.hk/hk-sh-ai-forum-2024/">Hong Kong Shanghai AI Forum</a>, 04/2024</li>
-			</ul></ul>
-		</td></tr>
+            </div>
+        </section>
 		
+        <section id="awards">
+            <div class="section-header">
+                <span class="section-title">Honors & Awards</span>
+                <div class="divider"></div>
+            </div>
+            <div class="card">
+                <div class="list-item">
+                    <div class="list-date">2025</div>
+                    <div>Postgraduate Scholarship, HKUST(GZ)</div>
+                </div>
+                <div class="list-item">
+                    <div class="list-date">2025</div>
+                    <div>Outstanding Graduate, NPU</div>
+                </div>
+                <div class="list-item">
+                    <div class="list-date">2025</div>
+                    <div>Postgraduate Scholarship, HKUST</div>
+                </div>
+                <div class="list-item">
+                    <div class="list-date">2023-2024</div>
+                    <div>Outstanding University Student, NPU</div>
+                </div>
+                <div class="list-item">
+                    <div class="list-date">2023-2024</div>
+                    <div>University Scholarship, NPU</div>
+                </div>
+                <div class="list-item">
+                    <div class="list-date">2023</div>
+                    <div>University Student Innovation Fund, Ministry of Education of P.R. China</div>
+                </div>
+            </div>
+        </section>
 
-		</tbody>
-		</table>
-	</p> -->
+        <section id="services">
+            <div class="section-header">
+                <span class="section-title">Academic Services</span>
+                <div class="divider"></div>
+            </div>
+            <div class="card">
+                <ul class="service-list">
+                    <li><strong>Conference Reviewer:</strong> ECCV (2024), MM (2024), NeurIPS (2024-2025), ICML (2025), ICCV (2025), ICLR (2025-2026), CVPR (2025-2026), AISTATS (2025-2026), AAAI (2026)</li>
+                    <li><strong>Journal Reviewer:</strong> Pattern Recognition, ACM TOMM</li>
+                </ul>
+            </div>
+        </section>
 
-<!-- </div>    -->
-
-
-<div class="content anchor" id="service">
-	<h3 class="content-section-list">Services</h3>
-	<p>
-		<li>Conference Reviewer,
-			<!-- <br>&emsp;&emsp;2024, European Conference on Computer Vision (ECCV) 
-			<br>&emsp;&emsp;2024, ACM International Conference on Multimedia (MM)
-			<br>&emsp;&emsp;2024-2025, Neural Information Processing Systems (NeurIPS)
-			<br>&emsp;&emsp;2025, Computer Vision and Pattern Recognition (CVPR)
-			<br>&emsp;&emsp;2025, International Conference on Machine Learning (ICML)
-			<br>&emsp;&emsp;2025, International Conference on Computer Vision (ICCV)
-			<br>&emsp;&emsp;2025-2026, International Conference on Learning Representations (ICLR)
-			<br>&emsp;&emsp;2025-2026, Artificial Intelligence and Statistics (AISTATS)
-			<br>&emsp;&emsp;2026, AAAI Conference on Artificial Intelligence (AAAI) -->
-			<br>&emsp;&emsp;European Conference on Computer Vision (ECCV), 2024
-			<br>&emsp;&emsp;ACM International Conference on Multimedia (MM), 2024
-			<br>&emsp;&emsp;Neural Information Processing Systems (NeurIPS), 2024-2025
-			<br>&emsp;&emsp;International Conference on Machine Learning (ICML), 2025
-			<br>&emsp;&emsp;International Conference on Computer Vision (ICCV), 2025
-			<br>&emsp;&emsp;International Conference on Learning Representations (ICLR), 2025-2026
-			<br>&emsp;&emsp;Computer Vision and Pattern Recognition (CVPR), 2025-2026
-			<br>&emsp;&emsp;Artificial Intelligence and Statistics (AISTATS), 2025-2026
-			<br>&emsp;&emsp;AAAI Conference on Artificial Intelligence (AAAI), 2026
-		</li>
-		<li>Journal Reviewer,
-			<br>&emsp;&emsp;Pattern Recognition, ACM TOMM
-		</li>
-	</p>
+    </main>
 </div>
 
-	<div style="text-align:center; width:300px; height:300px; margin: 0 auto; overflow:hidden;">
-		<script type='text/javascript' id='mapmyvisitors' 
-				src='https://mapmyvisitors.com/map.js?cl=9d97b5&w=a&t=tt&d=K5mXqzOGNWeXE2Ezi93zbcP2GhxzuJjlVPOeC5nKM24&co=ffffff&cmo=9189eb&cmn=c77474&ct=2e2b2b'>
-		</script>
-	</div>
+<div style="width:76%; height:1px; background-color: #2c2c2c; margin-top: 60px; margin-bottom: 14px; margin-left: auto; margin-right: auto;"></div>
 
-</body>
+<div style="text-align:center; width:100%; margin: 0 auto; overflow:hidden;">
+	<p>© 2025 Harold Haodong Chen. Template designed with <a href="https://gemini.google.com/" target="_blank" style="color: #ba98c8;">Gemini 3 Pro</a>.</p>
+</div>
+<div style="text-align:center; width:240px; height:240px; margin: 0 auto; overflow:hidden; margin-top: 16px;">
+	<script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?cl=d8acef&w=a&t=tt&d=K5mXqzOGNWeXE2Ezi93zbcP2GhxzuJjlVPOeC5nKM24&co=121212&cmo=f4e7f9&cmn=a43acc&ct=ffffff"></script>
+</div>

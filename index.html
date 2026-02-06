@@ -60,6 +60,22 @@
         padding-left: 1.5rem;
         padding-right: 1.5rem;
     }
+    #invited-talks .card {
+        padding-top: 1.2rem;
+        padding-bottom: 1rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .invited-talks-list { list-style: none; }
+    .invited-talks-list li {
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        color: var(--text-sec);
+    }
+    .invited-talks-list li::before {
+        content: "•"; color: var(--accent); font-weight: bold; display: inline-block; width: 1.5em; margin-left: 0.5em;
+    }
+    .invited-talks-list strong { color: var(--text-main); white-space: nowrap; }
 
     #awards .card {
         padding-top: 1.2rem;
@@ -196,6 +212,35 @@
         margin-bottom: 1.5rem;
         gap: 1rem;
     }
+
+    .publication-toggle {
+        display: flex;
+        gap: 0.5rem;
+        margin-left: auto;
+    }
+
+    .toggle-btn {
+        padding: 6px 12px;
+        border: 1px solid var(--border-color);
+        background: rgba(255,255,255,0.03);
+        color: var(--text-sec);
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .toggle-btn:hover {
+        background: var(--accent-glow);
+        border-color: var(--accent);
+    }
+
+    .toggle-btn.active {
+        background: var(--accent);
+        color: var(--bg-color);
+        border-color: var(--accent);
+    }
     
     .section-title {
         font-size: 0.85rem;
@@ -218,6 +263,8 @@
     .bio-text a:hover { text-decoration: underline; }
 
     /* --- News & Awards --- */
+    .list-item a { color: var(--accent); text-decoration: none; }
+    .list-item a:hover { text-decoration: underline; }
     .list-item {
         display: grid;
         grid-template-columns: 80px 1fr;
@@ -255,6 +302,10 @@
     .tag.venue { color: var(--text-main); background: var(--accent-glow); border-color: rgba(191, 90, 242, 0.3); }
     .paper-links a { font-size: 0.85rem; color: var(--text-sec); text-decoration: none; margin-right: 0rem; transition: color 0.2s; }
     .paper-links a:hover { color: var(--accent); }
+
+    .additional-paper {
+        display: none;
+    }
 
     /* --- Experience (with Logo) --- */
     .exp-item {
@@ -340,13 +391,13 @@
     
     <aside class="sidebar">
         <div class="profile-header">
-            <img src="images/homepage3.jpg" alt="Harold Chen" class="avatar">
+            <img src="images/personal2.jpg" alt="Harold Chen" class="avatar">
             <h1>Harold Haodong Chen</h1>
             <span class="role">PhD Student @ HKUST</span>
         </div>
 
 		<div class="sidebar-bio" style="text-align: center; font-size: 0.9rem;">
-            <p style="text-align: center; font-size: 1rem;">The Hong Kong University of Science and Technology</p>
+            <!-- <p style="text-align: center; font-size: 1rem;">The Hong Kong University of Science and Technology</p> -->
 			<p style="text-align: center; font-size: 1rem;">Email: haroldchen328 [at] gmail.com</p>
         </div>		
 
@@ -370,11 +421,40 @@
               var qrCode = document.getElementById('wechat-qr-code');
               qrCode.style.display = 'block';
             }
-            
+
             function hideWeChatQRCode() {
               var qrCode = document.getElementById('wechat-qr-code');
               qrCode.style.display = 'none';
             }
+
+            // Publication toggle functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const toggleSelected = document.getElementById('toggle-selected');
+                const toggleAll = document.getElementById('toggle-all');
+                const additionalPapers = document.querySelectorAll('.additional-paper');
+
+                function showSelected() {
+                    additionalPapers.forEach(paper => {
+                        paper.style.display = 'none';
+                    });
+                    toggleSelected.classList.add('active');
+                    toggleAll.classList.remove('active');
+                }
+
+                function showAll() {
+                    additionalPapers.forEach(paper => {
+                        paper.style.display = 'grid';
+                    });
+                    toggleAll.classList.add('active');
+                    toggleSelected.classList.remove('active');
+                }
+
+                toggleSelected.addEventListener('click', showSelected);
+                toggleAll.addEventListener('click', showAll);
+
+                // Initially show selected publications only
+                showSelected();
+            });
 		</script>
     </aside>
 
@@ -387,9 +467,11 @@
             </div>
             <div class="card">
                 <p class="bio-text">
-                    I'm a 1st-year PhD student at The Hong Kong University of Science and Technology (HKUST), supervised by Prof. <a href="https://www.yingcong.me/" target="_blank">Ying-Cong Chen</a> and Prof. <a href="https://cqf.io/" target="_blank">Qifeng Chen</a>. I obtained my B.E. degree at Northwestern Polytechnical University (NPU) with Outstanding Graduate Award in 2025, where I worked closely with Prof. <a href="https://scholar.google.com/citations?user=amxDSLoAAAAJ&hl=en" target="_blank">Dian Shao</a>.
+                    I'm a PhD student at The Hong Kong University of Science and Technology, supervised by Prof. <a href="https://www.yingcong.me/" target="_blank">Ying-Cong Chen</a> and Prof. <a href="https://cqf.io/" target="_blank">Qifeng Chen</a>. 
+                    <!-- I obtained my B.E. degree at Northwestern Polytechnical University with Outstanding Graduate Award in 2025, where I worked closely with Prof. <a href="https://scholar.google.com/citations?user=amxDSLoAAAAJ&hl=en" target="_blank">Dian Shao</a>. -->
                     <br><br>
-                    I am always open to all forms of research collaboration. Feel free to contact me if you are interested in working with me! My research interests include <strong>Video Generation &amp; Understanding</strong>.
+                    I am always open to all forms of research collaboration, and we are always looking for self-motivated undergrad/master/mphil students to for research projects in <strong>Video/Image Generation</strong>, <strong>LLM/MLLM Reasoning</strong>.
+                    Students from both campuses of HKUST are especially welcome (other universities are also welcome). Feel free to ping me via Email or WeChat if you are interested in working with me! 
                 </p>
             </div>
         </section>
@@ -400,6 +482,10 @@
                 <div class="divider"></div>
             </div>
             <div class="card">
+                <!-- <div class="list-item">
+                    <div class="list-date">12/2025</div>
+                    <div>Release the <a href="https://hickory-stork-b84.notion.site/Thinking-in-Loops-Scaling-Visual-ARC-with-Looped-Transformers-2c7f56a03c7f8027b692dfe93a3abb18" target="_blank">blog</a> on "Thinking in Loops".</div>
+                </div> -->
                 <div class="list-item">
                     <div class="list-date">11/2025</div>
                     <div>One paper is accepted to <strong>AAAI'26</strong>!</div>
@@ -479,6 +565,26 @@
 
             <article class="paper-card">
                 <div class="paper-img">
+                    <img src="images/papers/latentmorph.png" alt="TiViBench">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">Show, Don't Tell: Morphing Latent Reasoning into Image Generation</div>
+                    <div class="paper-authors">
+                        <span class="highlight-me">Harold Haodong Chen*</span>, Xinxiang Yin*, Wen-Jie Shu, Hongfei Zhang, Zixin Zhang, Chenfei Liao, Litao Guo, Qifeng Chen<sup>&dagger;</sup>, Ying-Cong Chen<sup>&dagger;</sup>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Preprint, 2026</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2602.02227"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                        <!-- <a href="https://haroldchen19.github.io/TiViBench-Page/"><span class="highlight-me">[</span>Webpage<span class="highlight-me">]</span></a> -->
+                        <a href="https://github.com/EnVision-Research/LatentMorph"><span class="highlight-me">[</span>Code<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="paper-card">
+                <div class="paper-img">
                     <img src="images/papers/tivibench2.png" alt="TiViBench">
                 </div>
                 <div class="paper-content-col">
@@ -522,7 +628,32 @@
             <div class="section-header">
                 <span class="section-title">Selected Publications</span>
                 <div class="divider"></div>
+                <div class="publication-toggle">
+                    <button id="toggle-selected" class="toggle-btn active">Selected</button>
+                    <button id="toggle-all" class="toggle-btn">All Publications</button>
+                </div>
             </div>
+
+
+            <article class="paper-card additional-paper">
+                <div class="paper-img">
+                    <img src="images/papers/sram.png" alt="SRAM">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">Adaptive Evidential Learning for Temporal-Semantic Robustness in Moment Retrieval</div>
+                    <div class="paper-authors">
+                        Haojian Huang*, Kaijing Ma*, Jin Chen*, <span class="highlight-me">Haodong Chen</span>, Zhou Wu, Xianghao Zang, Han Fang, Chao Ban, Hao Sun<sup>&dagger;</sup>, Mulin Chen<sup>&dagger;</sup>, Zhongjiang He
+                    </div>
+                    <div class="tags">
+                        <span class="tag venue">AAAI 2026</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2512.00953"><span class="highlight-me">[</span>Paper<span class="highlight-me">]</span></a>
+                        <a href="https://arxiv.org/abs/2512.00953"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                        <a href="https://github.com/KaijingOfficial/DEMR"><span class="highlight-me">[</span>Code<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
 
             <article class="paper-card">
                 <div class="paper-img">
@@ -585,6 +716,27 @@
                 </div>
             </article>
 
+            <article class="paper-card additional-paper">
+                <div class="paper-img">
+                    <img src="images/papers/finephys.png" alt="FinePhys">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">FinePhys: Fine-grained Human Action Generation by Explicitly Incorporating Physical Laws for Effective Skeletal Guidance</div>
+                    <div class="paper-authors">
+                        Dian Shao<sup>&dagger;</sup>, Mingfei Shi, Shengda Xu, <span class="highlight-me">Haodong Chen</span>, Yongle Huang, Binglu Wang
+                    </div>
+                    <div class="tags">
+                        <span class="tag venue">CVPR 2025</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Shao_FinePhys_Fine-grained_Human_Action_Generation_by_Explicitly_Incorporating_Physical_Laws_CVPR_2025_paper.pdf"><span class="highlight-me">[</span>Paper<span class="highlight-me">]</span></a>
+                        <a href="https://arxiv.org/abs/2505.13437"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                        <a href="https://smartdianlab.github.io/projects-FinePhys/"><span class="highlight-me">[</span>Webpage<span class="highlight-me">]</span></a>
+                        <a href="https://github.com/SmartDianLab/FinePhys"><span class="highlight-me">[</span>Code<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
+
             <article class="paper-card">
                 <div class="paper-img">
                     <img src="images/papers/sefar.png" alt="SeFAR">
@@ -622,6 +774,47 @@
                         <a href="https://dl.acm.org/doi/10.1145/3664647.3680827"><span class="highlight-me">[</span>Paper<span class="highlight-me">]</span></a>
                         <a href="https://arxiv.org/abs/2407.02157"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
                         <a href="https://haroldchen19.github.io/FineCLIPER-Page/"><span class="highlight-me">[</span>Webpage<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="paper-card additional-paper">
+                <div class="paper-img">
+                    <img src="images/papers/CREST.png" alt="CREST">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">CREST: Cross-modal Resonance through Evidential Deep Learning for Enhanced Zero-Shot Learning</div>
+                    <div class="paper-authors">
+                        Haojian Huang, Xiaozhen Qiao, Zhuo Chen, <span class="highlight-me">Haodong Chen</span>, Bingyu Li, Zhe Sun, Mulin Chen<sup>&dagger;</sup>, Xuelong Li<sup>&dagger;</sup>
+                    </div>
+                    <div class="tags">
+                        <span class="tag venue">MM 2024</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://dl.acm.org/doi/10.1145/3664647.3681629"><span class="highlight-me">[</span>Paper<span class="highlight-me">]</span></a>
+                        <a href="https://arxiv.org/abs/2404.09640"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                        <a href="https://github.com/JethroJames/CREST"><span class="highlight-me">[</span>Code<span class="highlight-me">]</span></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="paper-card additional-paper">
+                <div class="paper-img">
+                    <img src="images/papers/urbanclip.png" alt="urbanclip">
+                </div>
+                <div class="paper-content-col">
+                    <div class="paper-title">UrbanCLIP: Learning Text-enhanced Urban Region Profiling with Contrastive Language-Image Pretraining from the Web</div>
+                    <div class="paper-authors">
+                        Yibo Yan, Haomin Wen, Siru Zhong, Wei Chen, <span class="highlight-me">Haodong Chen</span>, Qingsong Wen, Roger Zimmermann, Yuxuan Liang<sup>&dagger;</sup>
+                    </div>
+                    <div class="tags">
+                        <span class="tag venue">WWW 2024</span>
+                        <span class="tag" style="color: lightcoral;">Oral Presentation</span>
+                    </div>
+                    <div class="paper-links">
+                        <a href="https://dl.acm.org/doi/pdf/10.1145/3589334.3645378"><span class="highlight-me">[</span>Paper<span class="highlight-me">]</span></a>
+                        <a href="https://arxiv.org/abs/2310.18340"><span class="highlight-me">[</span>arXiv<span class="highlight-me">]</span></a>
+                        <a href="https://github.com/StupidBuluchacha/UrbanCLIP"><span class="highlight-me">[</span>Code<span class="highlight-me">]</span></a>
                     </div>
                 </div>
             </article>
@@ -713,7 +906,7 @@
                 </div>
                 <div class="list-item">
                     <div class="list-date">2025</div>
-                    <div>Outstanding Graduate, NPU</div>
+                    <div>Outstanding Graduate Award, NPU</div>
                 </div>
                 <div class="list-item">
                     <div class="list-date">2025</div>
@@ -734,15 +927,29 @@
             </div>
         </section>
 
+        <section id="invited-talks">
+            <div class="section-header">
+                <span class="section-title">Invited Talks</span>
+                <div class="divider"></div>
+            </div>
+            <div class="card">
+                <div class="list-item">
+                    <div class="list-date">01/2026</div>
+                    <div>Think-in-Video Reasoning for Video Generation @<a href="https://www.twelvelabs.io/" target="_blank">TwelveLabs</a></div>
+                </div>
+            </div>
+        </section> 
+
         <section id="services">
             <div class="section-header">
-                <span class="section-title">Academic Services</span>
+                <span class="section-title">Services</span>
                 <div class="divider"></div>
             </div>
             <div class="card">
                 <ul class="service-list">
-                    <li><strong>Conference Reviewer:</strong> ECCV (2024), MM (2024), NeurIPS (2024-2025), ICML (2025), ICCV (2025), ICLR (2025-2026), CVPR (2025-2026), AISTATS (2025-2026), AAAI (2026)</li>
+                    <li><strong>Conference Reviewer:</strong> MM (2024), ECCV (2024-2026), NeurIPS (2024-2025), ICCV (2025), ICLR (2025-2026), CVPR (2025-2026), AISTATS (2025-2026), ICML (2025-2026), AAAI (2026)</li>
                     <li><strong>Journal Reviewer:</strong> Pattern Recognition, ACM TOMM</li>
+                    <li><strong>Teaching:</strong> AIAA3201-Introduction to Computer Vision-2026 Spring</li>
                 </ul>
             </div>
         </section>
@@ -753,7 +960,7 @@
 <div style="width:76%; height:1px; background-color: #2c2c2c; margin-top: 60px; margin-bottom: 14px; margin-left: auto; margin-right: auto;"></div>
 
 <div style="text-align:center; width:100%; margin: 0 auto; overflow:hidden;">
-	<p>© 2025 Harold Haodong Chen. Template designed with <a href="https://gemini.google.com/" target="_blank" style="color: #ba98c8;">Gemini 3 Pro</a>.</p>
+	<p>© 2026 Harold Haodong Chen. Template designed with <a href="https://gemini.google.com/" target="_blank" style="color: #ba98c8;">Gemini 3 Pro</a>.</p>
 </div>
 <div style="text-align:center; width:240px; height:240px; margin: 0 auto; overflow:hidden; margin-top: 16px;">
 	<script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?cl=d8acef&w=a&t=tt&d=K5mXqzOGNWeXE2Ezi93zbcP2GhxzuJjlVPOeC5nKM24&co=121212&cmo=f4e7f9&cmn=a43acc&ct=ffffff"></script>

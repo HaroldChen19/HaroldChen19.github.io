@@ -3,232 +3,137 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <meta name="keywords" content="Harold Haodong Chen, Haodong Chen, Harold Chen, Harold H. Chen">
     <link rel="author" href="https://haroldchen19.github.io/">
-    <title>Harold Chen | HKUST</title>
+    <title>Harold Haodong Chen</title>
     <link rel="icon" href="personal2.jpg"/>
     <style>
-        /* --- Academic Minimalist (Refined Edition) --- */
-        :root {
-            --text-main: #1a1a1a;
-            --text-sec: #666666;
-            --accent: #6a3bbb; /* Deeper purple */
-            --border: #eeeeee;
-        }
-
-        body {
-            font-family: Georgia, serif;
-            line-height: 1.6;
-            color: var(--text-main);
-            max-width: 740px;
-            margin: 0 auto;
-            padding: 50px 25px;
-            background: #ffffff;
-        }
-
+        :root { --text-main: #1a1a1a; --text-sec: #666666; --accent: #6a3bbb; --border: #eeeeee; }
+        body { font-family: Georgia, serif; line-height: 1.6; color: var(--text-main); max-width: 740px; margin: 0 auto; padding: 50px 25px; background: #ffffff; }
         a { color: var(--text-main); text-decoration: none; }
         a:hover { text-decoration: underline; }
-
-        header {
-            margin-bottom: 20px;
-        }
-
+        header { margin-bottom: 20px; }
         h1 { font-size: 2.2rem; font-weight: bold; margin-bottom: 12px; }
+        h2 { font-size: 1.2rem; font-weight: bold; margin: 36px 0 12px 0; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
         
-        h2 { 
-            font-size: 1.2rem; 
-            font-weight: bold;
-            margin: 36px 0 12px 0;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 5px;
-            color: var(--text-main);
-            /* Removed uppercase */
-        }
-
-        .contact-info {  color: var(--text-sec); margin-bottom: 15px; }
-        .social-links { font-size: 0.95rem; }
-        .social-links a { color: var(--accent); font-weight: bold; margin-right: 20px; }
-        .wechat-id { color: var(--text-sec); }
-
-        /* --- Publications & Preprints Style --- */
-        .paper-list {
-            list-style: none;
-            padding: 0;
-        }
-        .paper-item {
-            margin-bottom: 7px;
-            /* font-size: 1rem; */
-            display: flex;
-            align-items: baseline;
-        }
-        .paper-item::before {
-            content: "•";
-            margin-right: 10px;
-            color: var(--text-sec);
-        }
-        .paper-title { font-weight: normal; } /* Removed bold */
-        .paper-venue { color: var(--text-sec); font-style: italic; margin-left: 2px; }
-        .paper-links { font-size: 0.85rem; margin-left: 2px; }
-        .paper-links a { color: var(--accent); } /* Links are purple */
-
-        /* --- List items (Exp, Awards, Services) --- */
-        .list-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-        .date { font-family: "Courier New", Courier, monospace; color: var(--text-sec); font-size: 0.9rem; }
+        .contact { color: var(--text-sec); margin-bottom: 15px; }
+        .social { font-size: 0.95rem; }
+        .social a { color: var(--accent); font-weight: bold; margin-right: 20px; }
         
-        ul.service-list { padding-left: 20px; }
-        ul.service-list li { margin-bottom: 8px; color: var(--text-sec); } 
+        /* Lists (Publications, Preprints, Services, Exp, etc.) */
+        ul.list { list-style: none; padding: 0; }
+        li.item { margin-bottom: 7px; display: flex; align-items: baseline; }
+        li.item::before { content: "•"; margin-right: 10px; color: var(--text-sec); }
+        .venue { color: var(--text-sec); font-style: italic; margin-left: 4px; }
+        .links { font-size: 0.85rem; margin-left: 4px; }
+        .links a { color: var(--accent); }
+        
+        ul.bullet-list { padding-left: 20px; }
+        ul.bullet-list li { margin-bottom: 8px; color: var(--text-sec); } 
         strong { color: var(--text-main); font-weight: normal; border-bottom: 1px solid #eee; }
 
-        footer {
-            margin-top: 100px;
-            font-size: 0.8rem;
-            color: #1a1a1a;
-            text-align: center;
-        }
-
-        @media (max-width: 600px) {
-            .list-row { flex-direction: column; }
-            .date { text-align: left; margin-top: 2px; }
-        }
+        footer { margin-top: 60px; font-size: 0.8rem; color: #1a1a1a; text-align: center; }
+        .visitor-map { text-align:center; width:240px; height:240px; margin: 16px auto 0; overflow:hidden; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Harold Haodong Chen</h1>
-        <div class="contact-info">
-            haroldchen328 [at] gmail.com | WeChat: haroldchen04
-        </div>
-        <div class="social-links">
-            <a href="https://scholar.google.com/citations?user=BGUdPBAAAAAJ">Google Scholar</a>
-        </div>
+        <div class="contact">haroldchen328 [at] gmail.com | WeChat: haroldchen04</div>
+        <div class="social"><a href="https://scholar.google.com/citations?user=BGUdPBAAAAAJ">Google Scholar</a></div>
     </header>
 
     <section id="bio">
         <h2>Biography</h2> 
         <p>
             I am a PhD student at The Hong Kong University of Science and Technology, supervised by 
-            <a href="https://www.yingcong.me/">Prof. Ying-Cong Chen</a> and 
-            <a href="https://cqf.io/">Prof. Qifeng Chen</a>. Feel free to ping me via Email or WeChat if you are interested in working with me. 
-            <!-- <br><br> -->
-            <!-- We are always looking for self-motivated undergrad/master/mphil students to for research projects in <strong>Video/Image Generation</strong>, <strong>LLM/MLLM Reasoning</strong>. -->
-            <!-- Feel free to ping me via Email or WeChat if you are interested in working with me.  -->
+            <a href="https://www.yingcong.me/">Prof. Ying-Cong Chen</a> and <a href="https://cqf.io/">Prof. Qifeng Chen</a>. 
+            <br><br>
+            We are always looking for self-motivated undergrad/master/mphil students for research projects in <strong>Video Generation/Reasoning</strong>, <strong>World (Action) Models</strong>, and <strong>Agentic Applications</strong>.
+            Feel free to ping me via Email or WeChat if you are interested in working with me :-)
         </p>
     </section>
 
     <section id="preprints">
         <h2>Selected Preprints</h2>
-        <div class="paper-list">
-            <div class="paper-item">
-                <span class="paper-content">
-                    <span class="paper-title"><strong>DVD: Deterministic Video Depth Estimation with Generative Priors</strong></span>
-                    <span class="paper-links"><a href="https://arxiv.org/abs/2603.12250">[arXiv]</a></span>
+        <ul class="list">
+            <li class="item">
+                <span>
+                    <strong>DVD: Deterministic Video Depth Estimation with Generative Priors</strong>
+                    <span class="links"><a href="https://arxiv.org/abs/2603.12250">[arXiv]</a></span>
                 </span>
-            </div>
-            <div class="paper-item">
-                <span class="paper-content">
-                    <span class="paper-title"><strong>Show, Don't Tell: Morphing Latent Reasoning into Image Generation</strong></span>
-                    <span class="paper-links"><a href="https://arxiv.org/abs/2602.02227">[arXiv]</a></span>
+            </li>
+            <li class="item">
+                <span>
+                    <strong>Show, Don't Tell: Morphing Latent Reasoning into Image Generation</strong>
+                    <span class="links"><a href="https://arxiv.org/abs/2602.02227">[arXiv]</a></span>
                 </span>
-            </div>
-            <div class="paper-item">
-                <span class="paper-content">
-                    <span class="paper-title"><strong>Go with Your Gut: Scaling Confidence for Autoregressive Image Generation</strong></span>
-                    <span class="paper-links"><a href="https://arxiv.org/abs/2509.26376">[arXiv]</a></span> 
+            </li>
+            <li class="item">
+                <span>
+                    <strong>Go with Your Gut: Scaling Confidence for Autoregressive Image Generation</strong>
+                    <span class="links"><a href="https://arxiv.org/abs/2509.26376">[arXiv]</a></span> 
                 </span>
-            </div>
-        </div>
+            </li>
+        </ul>
     </section>
 
     <section id="publications">
         <h2>Selected Publications</h2>
-        <div class="paper-list">
-            <div class="paper-item">
-                <span class="paper-content">
-                    <span class="paper-title"><strong>TiViBench: Benchmarking Think-in-Video Reasoning for Video Generative Models</strong></span>
-                    <span class="paper-venue">CVPR 2026</span>
-                    <span class="paper-links"><a href="https://arxiv.org/abs/2511.13704">[Paper]</a></span> 
+        <ul class="list">
+            <li class="item">
+                <span>
+                    <strong>TiViBench: Benchmarking Think-in-Video Reasoning for Video Generation</strong>
+                    <span class="venue">CVPR 2026</span> <span class="links"><a href="https://arxiv.org/abs/2511.13704">[Paper]</a></span> 
                 </span>
-            </div>
-            <div class="paper-item">
-                <span class="paper-content">
-                    <span class="paper-title"><strong>Hierarchical Fine-grained Preference Optimization for Physically Plausible Video Generation</strong></span>
-                    <span class="paper-venue">NeurIPS 2025</span>
-                    <span class="paper-links"><a href="https://arxiv.org/abs/2508.10858">[Paper]</a></span> 
+            </li>
+            <li class="item">
+                <span>
+                    <strong>Hierarchical Fine-grained Preference Optimization for Physically Plausible Video Generation</strong>
+                    <span class="venue">NeurIPS 2025</span> <span class="links"><a href="https://arxiv.org/abs/2508.10858">[Paper]</a></span> 
                 </span>
-            </div>
-            <div class="paper-item">
-                <span class="paper-content">
-                    <span class="paper-title"><strong>FineQuest: Adaptive Knowledge-Assisted Sports Video Understanding via Agent-of-Thoughts Reasoning</strong></span>
-                    <span class="paper-venue">MM 2025 (Oral)</span>
-                    <span class="paper-links"><a href="https://arxiv.org/abs/2509.11796">[Paper]</a></span> 
+            </li>
+            <li class="item">
+                <span>
+                    <strong>FineQuest: Adaptive Knowledge-Assisted Sports Video Understanding via Agent-of-Thoughts Reasoning</strong>
+                    <span class="venue">MM 2025 (Oral)</span> <span class="links"><a href="https://arxiv.org/abs/2509.11796">[Paper]</a></span> 
                 </span>
-            </div>
-            <div class="paper-item">
-                <span class="paper-content">
-                    <span class="paper-title"><strong>VistaDPO: Video Hierarchical Spatial-Temporal Direct Preference Optimization for Large Video Models</strong></span>
-                    <span class="paper-venue">ICML 2025</span>
-                    <span class="paper-links"><a href="https://arxiv.org/abs/2504.13122">[Paper]</a></span>
+            </li>
+            <li class="item">
+                <span>
+                    <strong>VistaDPO: Video Hierarchical Spatial-Temporal Direct Preference Optimization for Large Video Models</strong>
+                    <span class="venue">ICML 2025</span> <span class="links"><a href="https://arxiv.org/abs/2504.13122">[Paper]</a></span>
                 </span>
-            </div>
-            <div class="paper-item">
-                <span class="paper-content">
-                    <span class="paper-title"><strong>SeFAR: Semi-supervised Fine-grained Action Recognition with Temporal Perturbation and Learning Stabilization</strong></span>
-                    <span class="paper-venue">AAAI 2025</span>
-                    <span class="paper-links"><a href="https://arxiv.org/abs/2501.01245">[Paper]</a></span> 
+            </li>
+            <li class="item">
+                <span>
+                    <strong>SeFAR: Semi-supervised Fine-grained Action Recognition with Temporal Perturbation and Learning Stabilization</strong>
+                    <span class="venue">AAAI 2025</span> <span class="links"><a href="https://arxiv.org/abs/2501.01245">[Paper]</a></span> 
                 </span>
-            </div>
-            <div class="paper-item">
-                <span class="paper-content">
-                    <span class="paper-title"><strong>FineCLIPER: Multi-modal Fine-grained CLIP for Dynamic Facial Expression Recognition with AdaptERs</strong></span>
-                    <span class="paper-venue">MM 2024</span>
-                    <span class="paper-links"><a href="https://arxiv.org/abs/2407.02157">[Paper]</a></span> 
+            </li>
+            <li class="item">
+                <span>
+                    <strong>FineCLIPER: Multi-modal Fine-grained CLIP for Dynamic Facial Expression Recognition with AdaptERs</strong>
+                    <span class="venue">MM 2024</span> <span class="links"><a href="https://arxiv.org/abs/2407.02157">[Paper]</a></span> 
                 </span>
-            </div>
-        </div>
+            </li>
+        </ul>
     </section>
 
-    <!-- <section id="experience">
-        <h2>Experience</h2>
-        <div class="list-row">
-            <span>Visiting Student, HKUST (Prof. Harry Yang)</span>
-            <span class="date">2024-2025</span>
-        </div>
-        <div class="list-row">
-            <span>Research Intern, Everlyn AI (Prof. Ser-Nam Lim)</span>
-            <span class="date">2024-2025</span>
-        </div>
-        <div class="list-row">
-            <span>Research Intern, HKGAI (Prof. Wenhan Luo)</span>
-            <span class="date">2024</span>
-        </div>
-    </section> -->
-
-    <!-- <section id="talks">
-        <h2>Invited Talks</h2>
-        <ul class="service-list">
-            <li><strong>Think-in-Video Reasoning for Video Generation @</strong><a href="https://www.twelvelabs.io/" target="_blank">TwelveLabs</a></li> 
-        </ul>
-    </section> -->
 
     <section id="services">
         <h2>Services</h2>
-        <ul class="service-list">
+        <ul class="bullet-list">
             <li><strong>Reviewer:</strong> CVPR, ICCV, ECCV, NeurIPS, ICML, ICLR, AAAI, MM, Pattern Recognition.</li>
             <li><strong>Teaching:</strong> AIAA3201-Introduction to Computer Vision-Spring 2026.</li>
         </ul>
     </section>
 
-
-    <footer style="margin-top: 60px;"> 
+    <footer> 
         &copy; 2026 Harold Haodong Chen. Last updated: 2026-03
     </footer>
-    <div style="text-align:center; width:240px; height:240px; margin: 0 auto; overflow:hidden; margin-top: 16px;">
+    <div class="visitor-map">
         <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?cl=e7ddf9&w=a&t=tt&d=K5mXqzOGNWeXE2Ezi93zbcP2GhxzuJjlVPOeC5nKM24&co=ffffff&cmo=d3d3d3&cmn=e8dbdb&ct=726e6e"></script>
     </div>
 
